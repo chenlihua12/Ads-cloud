@@ -1,0 +1,43 @@
+spring:
+    redis:
+        host: localhost
+        database: 0
+        port: 6379
+        jedis:
+            pool:
+                max-active: 10
+
+    datasource:
+        druid:
+            driver-class-name: com.mysql.jdbc.Driver
+            url: jdbc:mysql://183.60.143.42:3306/ads?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+            username: SecureWeb
+            password: Mysqldb2019!
+            initial-size: 5
+            minIdle: 5
+            maxActive: 20
+            maxWait: 60000
+            use-unfair-lock: true
+            pool-prepared-statements: false
+            max-pool-prepared-statement-per-connection-size: -1
+            validationQuery: SELECT 1
+            test-on-borrow: false
+            test-on-return: false
+            test-while-idle: true
+            keep-alive: true
+            timeBetweenEvictionRunsMillis: 60000
+            minEvictableIdleTimeMillis: 300000
+
+eureka:
+    instance:
+        prefer-ip-address: true
+        instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+    client:
+        register-with-eureka: true
+        fetch-registry: true
+        service-url:
+            defaultZone: http://admin:admin@127.0.0.1:9001/eureka/
+
+mybatis-plus:
+    configuration:
+        log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

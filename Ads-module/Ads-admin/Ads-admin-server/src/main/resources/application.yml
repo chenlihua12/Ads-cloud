@@ -1,0 +1,40 @@
+server:
+  port: 9003
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: admin-server
+    # jackson时间格式化
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+
+sso:
+  enabled: true
+  app: admin
+  exclude-login-path-patterns: /api/open/**,/swagger-ui.html,/inner/**
+jwt:
+  jwtSecretKey: 123456
+  uidAesSecretKey: 67890
+  expired: 1000
+
+redis:
+  cacheNames:
+    test: 300  # @Cacheable(value="test")
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
